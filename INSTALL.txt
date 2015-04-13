@@ -1,0 +1,7 @@
+Installation Steps
+
+* Extract QuickPOS files to directory on web server.
+* Create MySQL Database, user & password.
+* Import schema.sql into database.
+* Update application/config/database.php.
+* Make $$$ ! :)

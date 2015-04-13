@@ -42,6 +42,8 @@ class Quickpos_model extends MY_Model {
 	
 	public function complete_invoice($payment, $items)
 	{
+		$this->config->load('quickpos');
+		$posconfig = $this->config->item('quickpos');
 		$line = 0;
 		$receipt = new stdClass();
 		$receipt->datetime = date('Y-m-d H:i:s');
@@ -53,7 +55,7 @@ class Quickpos_model extends MY_Model {
 			$receipt->total += $i->retail;
 		}
 		
-		$receipt->tax = round($receipt->total * 0.07, 2);
+		$receipt->tax = round($receipt->total * $posconfig['tax'], 2);
 		$receipt->total += $receipt->tax;
 		
 		$this->db->insert('receipt', $receipt);
